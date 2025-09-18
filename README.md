@@ -38,9 +38,6 @@ src/
 
 ---
 
-
----
-
 ## 📸 Preview
 ![alt text](image.png)
 

@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+/* Smooth scrolling */
+html { scroll-behavior: smooth; }
+
+
+.bg-misty-gradient { background: linear-gradient(to bottom, #f0f9ff, #eef2ff, #ffffff); }

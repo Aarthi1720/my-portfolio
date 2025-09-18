@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/resume",
+      "destination": "/resume/Aarthi-Resume.pdf"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

@@ -17,17 +17,29 @@ const gmailCompose = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIC
 export default function Hero() {
   return (
     <header className="text-center py-16 px-5">
-      <motion.h1 {...fade} className="text-4xl sm:text-6xl font-extrabold leading-tight text-gray-800">
+      <motion.h1
+        {...fade}
+        className="text-4xl sm:text-6xl font-extrabold leading-tight text-gray-800"
+      >
         Full Stack MERN Developer
       </motion.h1>
 
-      <motion.p {...fade} className="mt-3 text-lg text-slate-600 max-w-2xl mx-auto">
+      <motion.p
+        {...fade}
+        className="mt-3 text-lg text-slate-600 max-w-2xl mx-auto"
+      >
         Building scalable apps with secure flows and modern UI/UX.
       </motion.p>
 
       {/* Buttons: stack on mobile, row on sm+ */}
-      <motion.div {...fade} className="mt-6 flex flex-col sm:flex-row justify-center gap-3">
-        <a href="#projects" className="px-6 py-3 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 text-center">
+      <motion.div
+        {...fade}
+        className="mt-6 flex flex-col sm:flex-row justify-center gap-3"
+      >
+        <a
+          href="#projects"
+          className="px-6 py-3 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 text-center"
+        >
           View Projects
         </a>
 
@@ -53,14 +65,32 @@ export default function Hero() {
       </motion.div>
 
       {/* Socials */}
-      <motion.div {...fade} className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3 text-sm flex-wrap">
-        <a className="hover:text-indigo-600 inline-flex items-center gap-1" href={profile.github} target="_blank" rel="noreferrer">
+      <motion.div
+        {...fade}
+        className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3 text-sm flex-wrap"
+      >
+        <a
+          className="hover:text-indigo-600 inline-flex items-center gap-1"
+          href={profile.github}
+          target="_blank"
+          rel="noreferrer"
+        >
           <Github size={16} /> GitHub
         </a>
-        <a className="hover:text-indigo-600 inline-flex items-center gap-1" href={profile.linkedin} target="_blank" rel="noreferrer">
+        <a
+          className="hover:text-indigo-600 inline-flex items-center gap-1"
+          href={profile.linkedin}
+          target="_blank"
+          rel="noreferrer"
+        >
           <Linkedin size={16} /> LinkedIn
         </a>
-        <a className="hover:text-indigo-600 inline-flex items-center gap-1 break-all" href={gmailCompose} target="_blank" rel="noreferrer">
+        <a
+          className="hover:text-indigo-600 inline-flex items-center gap-1 break-all"
+          href={gmailCompose}
+          target="_blank"
+          rel="noreferrer"
+        >
           <Mail size={16} /> {profile.email}
         </a>
       </motion.div>

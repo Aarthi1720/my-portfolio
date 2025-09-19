@@ -18,7 +18,7 @@ export default function About() {
       >
         Certified Full Stack Developer (MERN) with AI Tools (GUVI — IIT-M
         Pravartak). Completed 12 course tasks, 2 mini projects later enhanced to
-        full-stack, and 1 final capstone. Skilled in React, Node, Express,
+        full-stack, and 1 final capstone. Skilled in React, Node, Express, REST APIs,
         MongoDB with secure integrations (Stripe, Cloudinary, JWT, Nodemailer)
         and clean UI/UX.
       </motion.p>

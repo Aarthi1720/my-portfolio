@@ -4,7 +4,7 @@ export const profile = {
   email: "aarthirajendran1705@gmail.com",
   github: "https://github.com/Aarthi1720",
   linkedin: "https://linkedin.com/in/aarthi-r-66944628a",
-  resume: "/resume/Aarthi-Resume.pdf", // put your PDF in /public
+  resume: "/resume/AarthiR-Resume.pdf", // put your PDF in /public
   formspree: "https://formspree.io/f/xrbawwne",
 
   stats: [
@@ -15,7 +15,7 @@ export const profile = {
 
   skills: {
     frontend: ["React", "JavaScript (ES6+)", "HTML", "CSS", "TailwindCSS"],
-    backend: ["Node.js", "Express.js"],
+    backend: ["Node.js", "Express.js, REST APIs"],
     database: ["MongoDB (Atlas, Compass)", "MySQL"],
     tools: ["Git", "GitHub", "Postman", "Vercel", "Render", "Netlify"],
     ai: ["ChatGPT", "Copilot"], // new category
@@ -39,6 +39,7 @@ export const profile = {
         "TailwindCSS",
         "Node.js",
         "Express.js",
+        "REST APIs",
         "MongoDB",
         "Stripe",
         "JWT",
@@ -58,6 +59,7 @@ export const profile = {
         "Context API",
         "Node.js",
         "Express.js",
+        "REST APIs",
         "MongoDB",
       ],
       image: "/images/Project2.png",
@@ -75,6 +77,7 @@ export const profile = {
         "Recharts",
         "Node.js",
         "Express.js",
+        "REST APIs",
         "MongoDB",
       ],
       image: "/images/Project3.png",

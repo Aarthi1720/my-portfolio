@@ -89,7 +89,7 @@ export default function Navbar() {
           {/* Download resume */}
           <a
             href={profile.resume}
-            download="Aarthi-R-Resume.pdf"
+            download="AarthiR-Resume.pdf"
             className="px-3 py-1.5 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition-colors"
           >
             Resume
@@ -139,7 +139,7 @@ export default function Navbar() {
             </a>
             <a
               href={profile.resume}
-              download="Aarthi-R-Resume.pdf"
+              download="AarthiR-Resume.pdf"
               className="mt-1 inline-block px-3 py-2 rounded-lg bg-indigo-600 text-white text-center"
               onClick={() => setOpen(false)}
             >

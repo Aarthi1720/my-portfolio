@@ -1,0 +1,100 @@
+/* ---------- Light tokens ---------- */
+:root {
+  --bg: #ffffff;
+  --panel: #ffffff;
+  --ink: #1f2f53;
+  --muted: #475569;
+
+  --brand: #6366f1;   /* Indigo */
+  --ring:  #6366f1;
+
+  --hero-from: #eef2ff;
+  --hero-to:   #ffffff;
+}
+
+/* ---------- Dark tokens ---------- */
+html[data-theme="dark"] {
+  --bg: #0b1220;
+  --panel: #0f172a;
+  --ink: #e5e7eb;
+  --muted: #9aa4b2;
+
+  --brand: #8b8cfb;
+  --ring:  #8b8cfb;
+
+  --hero-from: #0a1020;
+  --hero-to:   #111c30;
+}
+
+/* ---------- Base ---------- */
+html, body { background: var(--bg); color: var(--ink); }
+a { color: var(--brand); }
+:where(a,button,input,select,textarea,[role="button"]):focus-visible {
+  outline: 2px solid var(--ring); outline-offset: 2px;
+}
+
+/* Hero gradient */
+.bg-hero { background: linear-gradient(180deg, var(--hero-from), var(--hero-to)); }
+
+/* Cards */
+.theme-card {
+  background: var(--panel);
+  border: 1px solid rgba(148,163,184,.35);
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(2,6,23,.06);
+}
+
+/* Glass */
+.glass {
+  background: color-mix(in oklab, var(--panel) 82%, transparent);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(148,163,184,.25);
+  border-radius: 16px;
+}
+
+/* Buttons */
+.btn { padding: 12px 18px; border-radius: 10px; font-weight: 600; }
+.btn-brand   { background: var(--brand); color: #fff; }
+.btn-brand:hover   { filter: brightness(1.05); }
+.btn-outline { border: 1px solid var(--brand); color: var(--brand); background: transparent; }
+.btn-outline:hover { background: color-mix(in oklab, var(--brand) 10%, transparent); }
+
+/* Pills */
+.pill {
+  font-size: 11px; padding: 4px 10px; border-radius: 999px;
+  border: 1px solid rgba(148,163,184,.35);
+  background: color-mix(in oklab, var(--panel) 92%, transparent);
+  color: var(--muted);
+}
+
+/* ---------- Alternating section surfaces ---------- */
+/* Light */
+:root {
+  /* Keep your existing tokens... */
+  /* New “surfaces” derived from your tokens so they auto-match your theme */
+  --surface-0: var(--bg); /* base background */
+  /* a slightly tinted panel – subtle difference per section */
+  --surface-1: color-mix(in oklab, var(--panel) 94%, transparent);
+  /* hairline divider */
+  --hairline: color-mix(in oklab, var(--ink) 8%, transparent);
+}
+
+/* Dark */
+html[data-theme="dark"] {
+  --surface-0: var(--bg); /* deep base */
+  /* a little lighter than base to create sections without hard bands */
+  --surface-1: color-mix(in oklab, var(--panel) 88%, transparent);
+  --hairline: color-mix(in oklab, var(--ink) 12%, transparent);
+}
+
+/* Section helpers */
+.section      { background: var(--surface-0); }
+.section-alt  { background: var(--surface-1); }
+
+/* Optional: a very subtle top divider between sections */
+.section + .section,
+.section + .section-alt,
+.section-alt + .section,
+.section-alt + .section-alt {
+  border-top: 1px solid var(--hairline);
+}

@@ -1,7 +1,69 @@
-@import "tailwindcss";
+@import "./theme.css";
 
-/* Smooth scrolling */
-html { scroll-behavior: smooth; }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+/* Add after your @tailwind lines */
+html {
+  scroll-behavior: smooth;
+}
 
-.bg-misty-gradient { background: linear-gradient(to bottom, #f0f9ff, #eef2ff, #ffffff); }
+body {
+  transition: background-color 300ms, color 300ms, border-color 300ms;
+}
+
+/* Components that follow tokens (work in both themes) */
+.card {
+  border-radius: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: var(--panel);
+  box-shadow: 0 2px 10px rgba(2, 6, 23, 0.06);
+}
+.glass {
+  background: color-mix(in oklab, var(--panel) 82%, transparent);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 16px;
+}
+.btn {
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+.btn-brand {
+  background: var(--brand);
+  color: #fff;
+}
+.btn-brand:hover {
+  filter: brightness(1.05);
+}
+.btn-outline {
+  border: 1px solid var(--brand);
+  color: var(--brand);
+  background: transparent;
+}
+.btn-outline:hover {
+  background: color-mix(in oklab, var(--brand) 10%, transparent);
+}
+.pill {
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: color-mix(in oklab, var(--panel) 92%, transparent);
+  color: var(--muted);
+}
+
+/* Let body & text always follow tokens, even if some components forget */
+html,
+body {
+  background: var(--bg);
+  color: var(--ink);
+}
+
+/* Optional global fade for theme switch */
+html.theme-fade * {
+  transition: background-color 0.25s ease, color 0.25s ease,
+    border-color 0.25s ease;
+}

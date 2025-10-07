@@ -1,46 +1,44 @@
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import About from "../components/About";
-import Skills from "../components/Skills";
 import Projects from "../components/Projects";
-import WhyHireMe from "../components/WhyHireMe";
+import Skills from "../components/Skills";
+import Certifications from "../components/Certifications";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
 
 export default function Home() {
   return (
-    <div className="min-h-screen text-slate-900">
+    <div className="min-h-screen">
       <Navbar />
 
-      {/* Hero - Gradient */}
-      <div className="bg-gradient-to-br from-indigo-100 via-blue-50 to-purple-100">
+      {/* Gradient hero stays */}
+      <header className="bg-hero">
         <Hero />
-      </div>
+      </header>
 
-      {/* About - White */}
-      <div className="bg-white">
-        <About />
-      </div>
+      {/* Alternate surfaces for a cohesive rhythm */}
+      <main>
+        <section className="section">
+          <About />
+        </section>
 
-      {/* Skills - Soft lilac */}
-      <div className="bg-indigo-50">
-        <Skills />
-      </div>
+        <section className="section-alt">
+          <Projects />
+        </section>
 
-      {/* Projects - White */}
-      <div className="bg-white">
-        <Projects />
-      </div>
+        <section className="section">
+          <Skills />
+        </section>
 
-      {/* Why Hire Me - Light indigo */}
-      <div className="bg-indigo-50">
-        <WhyHireMe />
-      </div>
+        <section className="section-alt">
+          <Certifications />
+        </section>
 
-      {/* Contact - White (to alternate again) */}
-      <div className="bg-white">
-        <Contact />
-      </div>
+        <section className="section">
+          <Contact />
+        </section>
+      </main>
 
       <Footer />
     </div>

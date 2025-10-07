@@ -1,110 +1,158 @@
 import { motion } from "framer-motion";
 import { Github, ExternalLink } from "lucide-react";
+import { Link } from "react-router-dom";
 import { profile } from "../data/profile";
+import TechPills from "./TechPills";
+
+const fade = {
+  initial: { opacity: 0, y: 14 },
+  whileInView: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  viewport: { once: true, amount: 0.2 },
+};
+
+function toSlug(str = "") {
+  return str
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
 
 export default function Projects() {
   return (
     <section
       id="projects"
-      className="max-w-6xl mx-auto px-5 py-14 bg-white scroll-mt-24"
+      className="max-w-6xl mx-auto px-5 py-16 scroll-mt-24"
     >
-      {/* Heading */}
-      <motion.div
-        initial={{ opacity: 0, y: 14 }}
-        whileInView={{ opacity: 1, y: 0, transition: { duration: 0.6 } }}
-        viewport={{ once: true, amount: 0.2 }}
-        className="text-center"
+      <motion.h2
+        {...fade}
+        className="text-3xl sm:text-[40px] text-center font-extrabold leading-tight"
+        style={{ color: "var(--ink)" }}
       >
-        <h2 className="text-3xl font-bold">Projects</h2>
-        <p className="mt-2 text-slate-600 text-sm sm:text-base">
-          Selected full-stack work (MERN) with real-world integrations.
-        </p>
-      </motion.div>
+        My Projects
+      </motion.h2>
 
-      {/* Grid */}
-      <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {profile.projects.map((p) => (
-          <motion.article
-            key={p.title}
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            whileHover={{ y: -4 }}
-            className="group rounded-2xl bg-white border border-slate-200 shadow-sm 
-                       hover:shadow-lg transition-all overflow-hidden"
-          >
-            {/* cover */}
-            <img
-              src={p.image}
-              alt={p.title}
-              className="w-full h-44 object-cover"
-              loading="lazy"
-              decoding="async"
-              width="640"
-              height="176"
-            />
+      <div className="mt-8 space-y-8">
+        {profile.projects.map((p) => {
+          const slug = p.href ? p.href.split("/").pop() : toSlug(p.title);
+          const caseStudyUrl = `/project/${slug}`;
 
-            {/* body */}
-            <div className="p-5">
-              <div className="flex items-center justify-between gap-2 flex-wrap">
-                <h3 className="text-lg font-semibold tracking-tight">{p.title}</h3>
-                {p.href && (
-                  <a
-                    href={p.href}
-                    className="shrink-0 text-[11px] px-3 py-1 rounded-full 
-                               ring-1 ring-indigo-200 text-indigo-700 
-                               hover:bg-indigo-50 transition-colors"
+          return (
+            <motion.article
+              key={p.title}
+              {...fade}
+              className="theme-card relative overflow-hidden"
+            >
+              {/* Case Study badge — consistent top-right for ALL sizes */}
+              <Link
+                to={caseStudyUrl}
+                className="absolute top-4 right-4 z-10 text-[11px] px-3 py-1 rounded-full font-medium transition-all"
+                style={{
+                  color: "var(--brand)",
+                  border:
+                    "1px solid color-mix(in oklab, var(--brand) 35%, transparent)",
+                  background:
+                    "color-mix(in oklab, var(--brand) 10%, transparent)",
+                }}
+              >
+                Case Study
+              </Link>
+
+              {/* Reserve space under the badge on small screens to prevent overlap */}
+              <div className="p-5 md:p-6 pt-12 md:pt-6 flex flex-col md:flex-row gap-5 md:gap-6">
+                {/* Thumbnail */}
+                <Link
+                  to={caseStudyUrl}
+                  className="block w-full md:w-[320px] shrink-0"
+                >
+                  <img
+                    src={p.image}
+                    alt={`${p.title} preview`}
+                    className="w-full h-44 md:h-[180px] object-cover rounded-lg border border-slate-300/40 dark:border-slate-700/60"
+                    loading="lazy"
+                  />
+                </Link>
+
+                {/* Content */}
+                <div className="flex-1 min-w-0">
+                  <Link
+                    to={caseStudyUrl}
+                    className="text-[20px] sm:text-[22px] font-semibold hover:opacity-90"
+                    style={{ color: "var(--ink)" }}
                   >
-                    Case Study
-                  </a>
-                )}
+                    {p.title}
+                  </Link>
+
+                  <div className="mt-2">
+                    <TechPills items={p.tech} initial={6} />
+                  </div>
+
+                  <p
+                    className="mt-3 text-[14px] leading-relaxed"
+                    style={{ color: "var(--muted)" }}
+                  >
+                    {p.desc}
+                  </p>
+
+                  {/* Actions */}
+                  <div className="mt-4 flex flex-wrap gap-2.5">
+                    {!!p.liveUrl && (
+                      <a
+                        href={p.liveUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-2 rounded-full px-3 py-[7px] text-[13px]"
+                        style={{
+                          background: "var(--brand)",
+                          color: "#fff",
+                          boxShadow: "0 1px 0 rgba(2,6,23,.05)",
+                        }}
+                      >
+                        <ExternalLink size={14} />
+                        Live Demo
+                      </a>
+                    )}
+
+                    {!!p.frontendUrl && (
+                      <a
+                        href={p.frontendUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-2 rounded-full px-3 py-[7px] text-[13px]"
+                        style={{
+                          border: "1px solid rgba(148,163,184,.35)",
+                          background:
+                            "color-mix(in oklab, var(--panel) 92%, transparent)",
+                          color: "var(--ink)",
+                        }}
+                      >
+                        <Github size={14} />
+                        Open Frontend
+                      </a>
+                    )}
+
+                    {!!p.backendUrl && (
+                      <a
+                        href={p.backendUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-2 rounded-full px-3 py-[7px] text-[13px]"
+                        style={{
+                          border: "1px solid rgba(148,163,184,.35)",
+                          background:
+                            "color-mix(in oklab, var(--panel) 92%, transparent)",
+                          color: "var(--ink)",
+                        }}
+                      >
+                        <Github size={14} />
+                        Open Backend
+                      </a>
+                    )}
+                  </div>
+                </div>
               </div>
-
-              <p className="mt-2 text-sm leading-relaxed text-slate-600">
-                {p.desc}
-              </p>
-
-              {/* tech pills */}
-              <div className="mt-3 flex flex-wrap gap-2">
-                {p.tech.map((t) => (
-                  <span
-                    key={t}
-                    className="text-[11px] px-3 py-1 rounded-full bg-slate-50 
-                               text-slate-700 ring-1 ring-slate-200 
-                               hover:bg-indigo-50 hover:text-indigo-700 hover:ring-indigo-200 
-                               transition-colors"
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
-
-              {/* links */}
-              <div className="mt-4 flex flex-wrap gap-4 text-sm">
-                {p.demo && (
-                  <a
-                    href={p.demo}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    className="text-indigo-600 hover:underline inline-flex items-center gap-1"
-                  >
-                    Live Demo <ExternalLink size={14} />
-                  </a>
-                )}
-                {p.repo && (
-                  <a
-                    href={p.repo}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    className="text-slate-700 hover:underline inline-flex items-center gap-1"
-                  >
-                    GitHub <Github size={14} />
-                  </a>
-                )}
-              </div>
-            </div>
-          </motion.article>
-        ))}
+            </motion.article>
+          );
+        })}
       </div>
     </section>
   );

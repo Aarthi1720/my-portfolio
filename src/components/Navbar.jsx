@@ -1,150 +1,150 @@
 import { useEffect, useState } from "react";
 import { profile } from "../data/profile";
+import ThemeToggle from "./ThemeToggle";
 import { Menu, X } from "lucide-react";
 
-function NavItem({ href, label, active }) {
+function NavItem({ href, label }) {
   return (
-    <div className="relative group">
-      <a
-        href={href}
-        className={`px-0.5 transition-colors hover:text-indigo-600 ${
-          active ? "text-indigo-600 font-semibold" : ""
-        }`}
-      >
-        {label}
-      </a>
+    <a
+      href={href}
+      className={[
+        "relative px-0.5 text-sm font-medium transition-colors",
+        "text-slate-700 hover:text-indigo-600",
+        "dark:text-slate-300 dark:hover:text-indigo-400",
+      ].join(" ")}
+    >
+      {label}
       <span
-        className={`hidden sm:block pointer-events-none absolute -bottom-1 h-0.5 bg-indigo-600 transition-all duration-300 ${
-          active
-            ? "left-0 w-full"
-            : "left-1/2 -translate-x-1/2 w-0 group-hover:w-8"
-        }`}
+        className={[
+          "pointer-events-none absolute -bottom-1 left-1/2 h-0.5 w-0 -translate-x-1/2",
+          "bg-indigo-600 transition-all duration-300 group-hover:w-8",
+          "dark:bg-indigo-400",
+        ].join(" ")}
       />
-    </div>
+    </a>
   );
 }
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [active, setActive] = useState("home");
   const [open, setOpen] = useState(false);
+  const [elevated, setElevated] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => setElevated(window.scrollY > 4);
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-
-    const ids = ["projects", "skills", "contact"];
-    const els = ids.map((id) => document.getElementById(id)).filter(Boolean);
-    if (els.length) {
-      const io = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((e) => e.isIntersecting && setActive(e.target.id));
-        },
-        { root: null, rootMargin: "-50% 0px -50% 0px", threshold: 0.01 }
-      );
-      els.forEach((el) => io.observe(el));
-      return () => {
-        window.removeEventListener("scroll", onScroll);
-        els.forEach((el) => io.unobserve(el));
-        io.disconnect();
-      };
-    }
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
+    if (!open) return;
     const close = () => setOpen(false);
     window.addEventListener("hashchange", close);
-    return () => window.removeEventListener("hashchange", close);
-  }, []);
+    window.addEventListener("scroll", close, { passive: true });
+    return () => {
+      window.removeEventListener("hashchange", close);
+      window.removeEventListener("scroll", close);
+    };
+  }, [open]);
 
   return (
     <nav
-      className={`sticky top-0 z-40 backdrop-blur border-b border-slate-200 transition-all ${
-        scrolled ? "bg-white/90 shadow-md" : "bg-white/70"
-      }`}
+      className={[
+        "sticky top-0 z-50 w-full transition-[box-shadow,background-color] duration-200",
+        // ✅ base on tokens so surface always matches theme (no surprise blacks on mobile)
+        "bg-slate-50/95 dark:bg-slate-900/90 supports-[backdrop-filter]:bg-[color:var(--panel)]/70 backdrop-blur",
+        "border-b border-slate-200/70 dark:border-slate-700/60",
+        elevated
+          ? "shadow-[0_6px_20px_rgba(2,6,23,.12)] dark:shadow-[0_6px_28px_rgba(0,0,0,.35)]"
+          : "shadow-none",
+      ].join(" ")}
     >
-      <div className="max-w-6xl mx-auto px-5 h-14 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-4 sm:px-5 h-14 flex items-center justify-between">
+        {/* Brand */}
         <a
-          href="/"
-          className="text-lg sm:text-xl font-extrabold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent"
+          href="#"
+          className="text-lg sm:text-xl font-extrabold bg-gradient-to-r from-indigo-600 to-fuchsia-600 bg-clip-text text-transparent dark:from-indigo-400 dark:to-fuchsia-400"
         >
           {profile.name}
         </a>
 
-        {/* Desktop */}
-        <div className="hidden sm:flex items-center gap-6 text-sm font-medium">
-          <NavItem
-            href="#projects"
-            label="Projects"
-            active={active === "projects"}
-          />
-          <NavItem href="#skills" label="Skills" active={active === "skills"} />
-          <NavItem
-            href="#contact"
-            label="Contact"
-            active={active === "contact"}
-          />
+        {/* Desktop nav */}
+        <div className="hidden md:flex items-center gap-6">
+          <div className="group">
+            <NavItem href="#projects" label="Projects" />
+          </div>
+          <div className="group">
+            <NavItem href="#skills" label="Skills" />
+          </div>
+          <div className="group">
+            <NavItem href="#certifications" label="Certifications" />
+          </div>
+          <div className="group">
+            <NavItem href="#contact" label="Contact" />
+          </div>
 
-          {/* Download resume */}
           <a
             href={profile.resume}
-            download="AarthiR-Resume.pdf"
-            className="px-3 py-1.5 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition-colors"
+            target="_blank"
+            rel="noreferrer"
+            className={[
+              "inline-flex items-center rounded-lg px-3 py-2 font-semibold transition-colors",
+              "border border-indigo-500/70 text-indigo-600 hover:bg-indigo-50",
+              "dark:text-indigo-300 dark:hover:bg-indigo-500/10",
+            ].join(" ")}
           >
             Resume
           </a>
+
+          <ThemeToggle />
         </div>
 
-        {/* Mobile toggle */}
-        <button
-          className="sm:hidden p-2 rounded-md hover:bg-slate-100"
-          aria-label="Open menu"
-          onClick={() => setOpen((v) => !v)}
-        >
-          {open ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        {/* Mobile actions */}
+        <div className="md:hidden flex items-center gap-2">
+          <ThemeToggle />
+          <button
+            aria-label={open ? "Close menu" : "Open menu"}
+            onClick={() => setOpen((v) => !v)}
+            className="p-2 rounded-lg border transition-colors border-slate-300/70 hover:bg-slate-50 dark:border-slate-700/60 dark:hover:bg-slate-800"
+          >
+            {open ? <X size={18} /> : <Menu size={18} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile dropdown */}
       {open && (
-        <div className="sm:hidden border-t border-slate-200 bg-white/95 backdrop-blur">
-          <div className="max-w-6xl mx-auto px-5 py-3 flex flex-col gap-2 text-sm">
-            <a
-              href="#projects"
-              className={`py-2 ${
-                active === "projects" ? "text-indigo-600 font-semibold" : ""
-              }`}
-              onClick={() => setOpen(false)}
-            >
-              Projects
-            </a>
-            <a
-              href="#skills"
-              className={`py-2 ${
-                active === "skills" ? "text-indigo-600 font-semibold" : ""
-              }`}
-              onClick={() => setOpen(false)}
-            >
-              Skills
-            </a>
-            <a
-              href="#contact"
-              className={`py-2 ${
-                active === "contact" ? "text-indigo-600 font-semibold" : ""
-              }`}
-              onClick={() => setOpen(false)}
-            >
-              Contact
-            </a>
-            <a
-              href={profile.resume}
-              download="AarthiR-Resume.pdf"
-              className="mt-1 inline-block px-3 py-2 rounded-lg bg-indigo-600 text-white text-center"
-              onClick={() => setOpen(false)}
-            >
-              Resume
-            </a>
+        <div className="md:hidden">
+          <div className="px-4 sm:px-5 py-2 border-t border-slate-200 dark:border-slate-700 bg-[color:var(--panel)]/98">
+            <nav className="grid gap-1 text-sm">
+              {[
+                ["#projects", "Projects"],
+                ["#skills", "Skills"],
+                ["#certifications", "Certifications"],
+                ["#contact", "Contact"],
+              ].map(([href, label]) => (
+                <a
+                  key={href}
+                  href={href}
+                  onClick={() => setOpen(false)}
+                  className="block px-2 py-3 rounded-lg transition-colors text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800"
+                >
+                  {label}
+                </a>
+              ))}
+
+              <div className="h-px my-2 bg-slate-200 dark:bg-slate-700" />
+
+              <a
+                href={profile.resume}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => setOpen(false)}
+                className="block text-center px-3 py-3 rounded-lg font-semibold border border-indigo-500/70 text-indigo-600 hover:bg-indigo-50 dark:text-indigo-300 dark:hover:bg-indigo-500/10"
+              >
+                Resume
+              </a>
+            </nav>
           </div>
         </div>
       )}

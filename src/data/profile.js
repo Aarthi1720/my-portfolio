@@ -4,21 +4,22 @@ export const profile = {
   email: "aarthirajendran1705@gmail.com",
   github: "https://github.com/Aarthi1720",
   linkedin: "https://linkedin.com/in/aarthi-r-66944628a",
-  resume: "/resume/AarthiR-Resume.pdf", // put your PDF in /public
+  resume: "/resume/AarthiR-Resume.pdf",
   formspree: "https://formspree.io/f/xrbawwne",
 
+  // Achievement-focused (mentor-safe)
   stats: [
-    { label: "Projects Shipped", value: "15+" },
+    { label: "Full-Stack MERN Apps", value: "3" },
     { label: "Capstone Score", value: "10/10" },
-    { label: "Codekata Problems", value: "250+" },
+    { label: "Coding Challenges", value: "250+" },
   ],
 
   skills: {
     frontend: ["React", "JavaScript (ES6+)", "HTML", "CSS", "TailwindCSS"],
-    backend: ["Node.js", "Express.js, REST APIs"],
+    backend: ["Node.js", "Express.js", "REST APIs"], // fixed comma bug
     database: ["MongoDB (Atlas, Compass)", "MySQL"],
     tools: ["Git", "GitHub", "Postman", "Vercel", "Render", "Netlify"],
-    ai: ["ChatGPT", "Copilot"], // new category
+    ai: ["ChatGPT", "Copilot"],
     extras: [
       "Stripe",
       "Cloudinary",
@@ -33,7 +34,7 @@ export const profile = {
   projects: [
     {
       title: "Hotel Booking System",
-      desc: "Full-stack booking app with search & filters, availability calendar, Stripe payments, promo codes, loyalty coins, verified reviews, user profiles, and email confirmations.",
+      desc: "End-to-end bookings with search/filters, availability calendar, secure Stripe checkout, promo codes, loyalty coins, verified reviews, user profiles, and email confirmations.",
       tech: [
         "React",
         "TailwindCSS",
@@ -46,13 +47,14 @@ export const profile = {
         "Nodemailer",
       ],
       image: "/images/Project1.png",
-      demo: "https://hotel-booking-frontend-beige.vercel.app/",
-      repo: "https://github.com/Aarthi1720/frontend",
+      liveUrl: "https://hotel-booking-frontend-beige.vercel.app/",
+      frontendUrl: "https://github.com/Aarthi1720/frontend",
+      backendUrl: "https://github.com/Aarthi1720/backend", // <-- set your actual backend repo
       href: "/project/hotel-booking",
     },
     {
       title: "Invoice Builder",
-      desc: "Invoices/Clients/Products CRUD, company profile, real-time totals, PDF export with jsPDF + html2canvas, persistent backend storage.",
+      desc: "Invoices/Clients/Products CRUD, company profile, real-time calculations, PDF export (jsPDF + html2canvas), and persistent backend storage.",
       tech: [
         "React",
         "TailwindCSS",
@@ -61,15 +63,18 @@ export const profile = {
         "Express.js",
         "REST APIs",
         "MongoDB",
+        "jsPDF",
+        "html2canvas",
       ],
       image: "/images/Project2.png",
-      demo: "https://invoice-builder-swart.vercel.app/",
-      repo: "https://github.com/Aarthi1720/Invoice_Builder",
+      liveUrl: "https://invoice-builder-swart.vercel.app/",
+      frontendUrl: "https://github.com/Aarthi1720/Invoice_Builder",
+      backendUrl: "https://github.com/Aarthi1720/Invoice_Builder_Backend", // <-- add if different
       href: "/project/invoice-builder",
     },
     {
       title: "Smart Expense Tracker",
-      desc: "Personal finance tracker with add/edit incomes & expenses, filters, category-wise reports, charts (Recharts), summary cards, and persistent storage on MongoDB Atlas.",
+      desc: "Personal finance manager with incomes/expenses, filters, category-wise charts (Recharts), summaries, and persistent storage on MongoDB Atlas.",
       tech: [
         "React",
         "TailwindCSS",
@@ -81,9 +86,18 @@ export const profile = {
         "MongoDB",
       ],
       image: "/images/Project3.png",
-      demo: "https://smart-expense-tracker-nine.vercel.app/",
-      repo: "https://github.com/Aarthi1720/Smart_Expense_Tracker",
+      liveUrl: "https://smart-expense-tracker-nine.vercel.app/",
+      frontendUrl: "https://github.com/Aarthi1720/Smart_Expense_Tracker",
+      backendUrl: "https://github.com/Aarthi1720/Smart_Expense_Tracker_Backend", // <-- add if different
       href: "/project/expense-tracker",
+    },
+  ],
+
+  certifications: [
+    {
+      title: "Full Stack MERN Certification",
+      issuer: "GUVI Geek Networks (IIT-M Pravartak)",
+      image: "/images/guvi-cert.png",
     },
   ],
 };

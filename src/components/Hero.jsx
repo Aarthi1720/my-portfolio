@@ -1,114 +1,124 @@
-import { motion } from "framer-motion";
-import { Github, Linkedin, Mail } from "lucide-react";
 import { profile } from "../data/profile";
-
-const fade = {
-  initial: { opacity: 0, y: 14 },
-  whileInView: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-  viewport: { once: true, amount: 0.2 },
-};
-
-const gmailCompose = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
-  profile.email
-)}&su=${encodeURIComponent("Hiring opportunity")}&body=${encodeURIComponent(
-  "Hi Aarthi,"
-)}`;
+import { Github, Linkedin, Mail, ArrowRight, Download } from "lucide-react";
 
 export default function Hero() {
+  const gmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+    profile.email
+  )}&su=${encodeURIComponent("Hiring Opportunity")}`;
+
   return (
-    <header className="text-center py-16 px-5">
-      <motion.h1
-        {...fade}
-        className="text-4xl sm:text-6xl font-extrabold leading-tight text-gray-800"
-      >
-        Full Stack MERN Developer
-      </motion.h1>
+    <section className="relative isolate overflow-hidden bg-hero text-center px-5 py-24 sm:py-32">
+      {/* soft overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(0deg, color-mix(in oklab, var(--panel) 6%, transparent), transparent)",
+        }}
+      />
 
-      <motion.p
-        {...fade}
-        className="mt-3 text-lg text-slate-600 max-w-2xl mx-auto"
-      >
-        Building scalable apps with secure flows and modern UI/UX.
-      </motion.p>
+      <div className="relative z-10 max-w-4xl mx-auto">
+        {/* Headline */}
+        <h1
+          className="text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight"
+          style={{ color: "var(--ink)" }}
+        >
+          Full-Stack <span style={{ color: "var(--brand)" }}>MERN</span> Developer
+        </h1>
 
-      {/* Buttons: stack on mobile, row on sm+ */}
-      <motion.div
-        {...fade}
-        className="mt-6 flex flex-col sm:flex-row justify-center gap-3"
-      >
-        <a
-          href="#projects"
-          className="px-6 py-3 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 text-center"
+        {/* Subheadline */}
+        <p
+          className="mt-6 text-lg sm:text-xl leading-relaxed"
+          style={{ color: "var(--muted)" }}
         >
-          View Projects
-        </a>
+          I design and ship <strong>production-ready web apps</strong> with clean,
+          accessible interfaces, <strong>secure APIs</strong>, and scalable data flows.
+          Focused on authentication, payments, file handling, and dashboards that feel
+          fast, modern, and trustworthy.
+        </p>
 
-        {/* Open Gmail compose (no Outlook) */}
-        <a
-          href={gmailCompose}
-          target="_blank"
-          rel="noreferrer"
-          className="px-6 py-3 rounded-lg border border-slate-300 hover:bg-slate-100 text-center"
-        >
-          Hire Me
-        </a>
+        {/* CTAs */}
+        <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4 flex-wrap">
+          {/* Primary button */}
+          <a
+            href="#projects"
+            className="btn btn-brand inline-flex items-center justify-center gap-2"
+          >
+            View Projects <ArrowRight size={18} />
+          </a>
 
-        {/* View résumé in a new tab */}
-        <a
-          href={profile.resume}
-          target="_blank"
-          rel="noreferrer"
-          className="px-6 py-3 rounded-lg border border-indigo-600 text-indigo-600 hover:bg-indigo-50 text-center"
-        >
-          View Resume
-        </a>
-      </motion.div>
+          {/* Matching Download button — styled like secondary brand variant */}
+          <a
+            href={profile.resume}
+            download="AarthiR-Resume.pdf"
+            className="btn btn-outline inline-flex items-center justify-center gap-2 border-[1.5px]
+                       border-[color-mix(in oklab,var(--brand) 55%,transparent)]
+                       text-[color-mix(in oklab,var(--brand) 85%,var(--ink))]
+                       hover:bg-[color-mix(in oklab,var(--brand) 12%,transparent)]
+                       hover:text-[var(--brand)]
+                       transition-all duration-200"
+          >
+            <Download size={18} />
+            Download Resume
+          </a>
+        </div>
 
-      {/* Socials */}
-      <motion.div
-        {...fade}
-        className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3 text-sm flex-wrap"
-      >
-        <a
-          className="hover:text-indigo-600 inline-flex items-center gap-1"
-          href={profile.github}
-          target="_blank"
-          rel="noreferrer"
+        {/* Socials */}
+        <div
+          className="mt-8 flex items-center justify-center flex-wrap gap-6 text-sm"
+          style={{ color: "var(--muted)" }}
         >
-          <Github size={16} /> GitHub
-        </a>
-        <a
-          className="hover:text-indigo-600 inline-flex items-center gap-1"
-          href={profile.linkedin}
-          target="_blank"
-          rel="noreferrer"
-        >
-          <Linkedin size={16} /> LinkedIn
-        </a>
-        <a
-          className="hover:text-indigo-600 inline-flex items-center gap-1 break-all"
-          href={gmailCompose}
-          target="_blank"
-          rel="noreferrer"
-        >
-          <Mail size={16} /> {profile.email}
-        </a>
-      </motion.div>
+          <a
+            aria-label="GitHub Profile"
+            href={profile.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 hover:opacity-90"
+            style={{ color: "var(--brand)" }}
+          >
+            <Github size={16} /> GitHub
+          </a>
 
-      {/* Stats: stack on mobile, row on sm+ */}
-      <motion.div
-        {...fade}
-        className="mt-8 inline-flex flex-col sm:flex-row gap-6 sm:gap-8 px-6 py-4 rounded-2xl bg-white shadow border border-slate-200"
-      >
-        {profile.stats.map((s) => (
-          <div key={s.label} className="text-left">
-            <p className="text-2xl sm:text-3xl font-extrabold">{s.value}</p>
-            <p className="text-xs uppercase tracking-widest text-slate-500">
-              {s.label}
-            </p>
-          </div>
-        ))}
-      </motion.div>
-    </header>
+          <a
+            aria-label="LinkedIn Profile"
+            href={profile.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 hover:opacity-90"
+            style={{ color: "var(--brand)" }}
+          >
+            <Linkedin size={16} /> LinkedIn
+          </a>
+
+          <a
+            aria-label="Send Email"
+            href={gmail}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 hover:opacity-90"
+            style={{ color: "var(--brand)" }}
+          >
+            <Mail size={16} /> {profile.email}
+          </a>
+        </div>
+
+        {/* Stats */}
+        <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl mx-auto">
+          {profile.stats.map((s) => (
+            <div key={s.label} className="glass p-4 shadow-md rounded-2xl">
+              <p className="text-3xl font-extrabold" style={{ color: "var(--ink)" }}>
+                {s.value}
+              </p>
+              <p
+                className="text-xs uppercase tracking-widest"
+                style={{ color: "var(--muted)" }}
+              >
+                {s.label}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }

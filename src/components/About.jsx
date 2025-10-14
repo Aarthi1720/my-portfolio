@@ -24,10 +24,10 @@ export default function About() {
         style={{ color: "var(--muted)" }}
       >
         I’m a <strong>Full-Stack MERN</strong> developer who ships
-        production-ready web apps end to end—clean UI,{" "}
+        production-ready web apps end-to-end: clean UI,{" "}
         <strong>secure APIs</strong>, and scalable data flows. Recent work
-        includes a <em>Hotel Booking System</em>,<em> Invoice Builder</em>, and{" "}
-        <em>Smart Expense Tracker</em> with real-world integrations: Stripe
+        includes a<em> Hotel Booking System</em>, <em>Invoice Builder</em>, and{" "}
+        <em>Smart Expense Tracker</em> with real-world integrations—Stripe
         (payments), Nodemailer (email), Cloudinary (uploads), JWT (auth),
         charts, and PDFs. Certified by GUVI (IIT-M Pravartak) with a{" "}
         <strong>10/10 Capstone</strong>.

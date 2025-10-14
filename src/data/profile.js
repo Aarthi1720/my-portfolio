@@ -7,16 +7,15 @@ export const profile = {
   resume: "/resume/AarthiR-Resume.pdf",
   formspree: "https://formspree.io/f/xrbawwne",
 
-  // Achievement-focused (mentor-safe)
   stats: [
-    { label: "Full-Stack MERN Apps", value: "3" },
-    { label: "Capstone Score", value: "10/10" },
-    { label: "Coding Challenges", value: "250+" },
+    { label: "Full-Stack Projects", value: "3" },
+    { label: "Capstone (IIT-M Pravartak)", value: "10/10" },
+    { label: "Coding Challenges Solved", value: "250+" },
   ],
 
   skills: {
-    frontend: ["React", "JavaScript (ES6+)", "HTML", "CSS", "TailwindCSS"],
-    backend: ["Node.js", "Express.js", "REST APIs"], // fixed comma bug
+    frontend: ["React", "JavaScript (ES6+)", "HTML5", "CSS3", "TailwindCSS"],
+    backend: ["Node.js", "Express.js", "REST APIs"],
     database: ["MongoDB (Atlas, Compass)", "MySQL"],
     tools: ["Git", "GitHub", "Postman", "Vercel", "Render", "Netlify"],
     ai: ["ChatGPT", "Copilot"],
@@ -34,14 +33,14 @@ export const profile = {
   projects: [
     {
       title: "Hotel Booking System",
-      desc: "End-to-end bookings with search/filters, availability calendar, secure Stripe checkout, promo codes, loyalty coins, verified reviews, user profiles, and email confirmations.",
+      desc: "Full-stack booking platform enabling hotel search, filters, and real-time availability with secure Stripe payments and JWT-based authentication. Includes loyalty coins, verified reviews, and email confirmations.",
       tech: [
         "React",
         "TailwindCSS",
         "Node.js",
         "Express.js",
-        "REST APIs",
         "MongoDB",
+        "REST APIs",
         "Stripe",
         "JWT",
         "Nodemailer",
@@ -49,20 +48,20 @@ export const profile = {
       image: "/images/Project1.png",
       liveUrl: "https://hotel-booking-frontend-beige.vercel.app/",
       frontendUrl: "https://github.com/Aarthi1720/frontend",
-      backendUrl: "https://github.com/Aarthi1720/backend", 
+      backendUrl: "https://github.com/Aarthi1720/backend",
       href: "/project/hotel-booking",
     },
     {
       title: "Invoice Builder",
-      desc: "Invoices/Clients/Products CRUD, company profile, real-time calculations, PDF export (jsPDF + html2canvas), and persistent backend storage.",
+      desc: "End-to-end invoice management app with CRUD for clients/products, real-time total calculation, and PDF generation using jsPDF + html2canvas. Backend built with Express & MongoDB for persistent data storage.",
       tech: [
         "React",
         "TailwindCSS",
         "Context API",
         "Node.js",
         "Express.js",
-        "REST APIs",
         "MongoDB",
+        "REST APIs",
         "jsPDF",
         "html2canvas",
       ],
@@ -74,16 +73,16 @@ export const profile = {
     },
     {
       title: "Smart Expense Tracker",
-      desc: "Personal finance manager with incomes/expenses, filters, category-wise charts (Recharts), summaries, and persistent storage on MongoDB Atlas.",
+      desc: "Personal finance tracker to record and analyze income/expenses with dynamic charts (Recharts) and category filters. Built with MERN stack; backend APIs manage secure data persistence on MongoDB Atlas.",
       tech: [
         "React",
         "TailwindCSS",
         "Context API",
-        "Recharts",
         "Node.js",
         "Express.js",
-        "REST APIs",
         "MongoDB",
+        "REST APIs",
+        "Recharts",
       ],
       image: "/images/Project3.png",
       liveUrl: "https://smart-expense-tracker-nine.vercel.app/",

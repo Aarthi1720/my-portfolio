@@ -49,7 +49,7 @@ export const profile = {
       image: "/images/Project1.png",
       liveUrl: "https://hotel-booking-frontend-beige.vercel.app/",
       frontendUrl: "https://github.com/Aarthi1720/frontend",
-      backendUrl: "https://github.com/Aarthi1720/backend", // <-- set your actual backend repo
+      backendUrl: "https://github.com/Aarthi1720/backend", 
       href: "/project/hotel-booking",
     },
     {
@@ -69,7 +69,7 @@ export const profile = {
       image: "/images/Project2.png",
       liveUrl: "https://invoice-builder-swart.vercel.app/",
       frontendUrl: "https://github.com/Aarthi1720/Invoice_Builder",
-      backendUrl: "https://github.com/Aarthi1720/Invoice_Builder_Backend", // <-- add if different
+      backendUrl: "https://github.com/Aarthi1720/Invoice_Backend",
       href: "/project/invoice-builder",
     },
     {
@@ -88,7 +88,7 @@ export const profile = {
       image: "/images/Project3.png",
       liveUrl: "https://smart-expense-tracker-nine.vercel.app/",
       frontendUrl: "https://github.com/Aarthi1720/Smart_Expense_Tracker",
-      backendUrl: "https://github.com/Aarthi1720/Smart_Expense_Tracker_Backend", // <-- add if different
+      backendUrl: "https://github.com/Aarthi1720/Smart_Expense_Backend",
       href: "/project/expense-tracker",
     },
   ],

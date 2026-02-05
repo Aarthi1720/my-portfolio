@@ -4,7 +4,7 @@ export const profile = {
   email: "aarthirajendran1705@gmail.com",
   github: "https://github.com/Aarthi1720",
   linkedin: "https://linkedin.com/in/aarthi-r-66944628a",
-  resume: "/resume/AarthiR_FullStackDeveloper_Resume.pdf",
+  resume: "/resume/Aarthi-FSD-Resume.pdf",
   formspree: "https://formspree.io/f/xrbawwne",
 
   stats: [
